@@ -1,0 +1,235 @@
+/* Navbar Styles */
+.navbar {
+    background-color: #1a1f2c;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    padding: 1rem 0; /* Padding vertikal untuk tinggi navbar */
+    position: relative;
+    width: 100%;
+    min-height: 60px; /* Pastikan navbar memiliki tinggi minimum */
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding: 0 4rem; /* Padding lebih besar untuk memberi jarak dari ujung */
+    width: 100%;
+    height: 100%;
+}
+
+/* Logo di kiri dengan jarak dari ujung */
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    z-index: 2;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    /* Tidak perlu margin-right: auto lagi karena sudah ada padding di container */
+}
+
+/* Menu nav-links di tengah */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    align-items: center;
+}
+
+/* Link style */
+.nav-links li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    padding: 0.75rem 1.25rem;
+    transition: all 0.3s ease; /* Transisi untuk semua properti */
+    border-radius: 6px;
+    display: inline-block;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efek hover yang lebih menarik */
+.nav-links li a:hover {
+    color: #1e90ff;
+    background-color: #34495e;
+    transform: translateY(-1px); /* Sedikit naik saat hover */
+    box-shadow: 0 4px 8px rgba(30, 144, 255, 0.2); /* Shadow biru */
+}
+
+/* Style untuk menu aktif */
+.nav-links li a.active {
+    color: #1e90ff;
+    background-color: rgba(30, 144, 255, 0.15);
+    cursor: default;
+    box-shadow: 0 2px 4px rgba(30, 144, 255, 0.3);
+}
+
+/* Efek ripple saat diklik (opsional) */
+.nav-links li a:active {
+    transform: translateY(0);
+    transition: transform 0.1s ease;
+}
+
+/* Profile container di kanan dengan jarak dari ujung */
+.profile-container {
+    display: flex !important;
+    align-items: center;
+    gap: 0.75rem;
+    position: relative;
+    z-index: 3;
+    flex-shrink: 0;
+    /* Tidak perlu margin-left: auto lagi karena sudah ada padding di container */
+}
+
+.profile-icon {
+    width: 40px; /* Sedikit lebih besar */
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    flex-shrink: 0;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.profile-icon:hover {
+    border-color: #1e90ff;
+}
+
+/* Style untuk nama user */
+.profile-container span {
+    color: white !important;
+    font-weight: 500 !important;
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-size: 0.95rem;
+}
+
+/* Dropdown styling */
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 100%; /* Posisi tepat di bawah profile container */
+    right: 0;
+    background-color: #2c3e50;
+    border: 1px solid #34495e;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    padding: 0.5rem 0;
+    z-index: 1000;
+    width: 180px;
+    min-width: 160px;
+    margin-top: 0.5rem; /* Space dari profile container */
+}
+
+/* Show dropdown class untuk JavaScript */
+.dropdown.show {
+    display: block;
+}
+
+.dropdown a, 
+.dropdown button {
+    display: block;
+    text-align: left;
+    padding: 0.75rem 1.5rem;
+    color: #fff;
+    text-decoration: none;
+    background: none;
+    border: none;
+    width: 100%;
+    font-size: 0.95rem;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: background-color 0.2s ease;
+    font-family: inherit;
+}
+
+.dropdown a:hover, 
+.dropdown button:hover {
+    background-color: #34495e;
+    color: #1e90ff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0.75rem 0;
+    }
+
+    .nav-container {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0 2rem; /* Padding lebih kecil di mobile */
+        gap: 1rem;
+    }
+
+    .logo {
+        font-size: 1.6rem;
+        text-align: left;
+    }
+
+    .nav-links {
+        position: static;
+        transform: none;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .profile-container {
+        justify-content: flex-end;
+    }
+
+    .dropdown {
+        position: fixed;
+        top: auto;
+        right: 2rem; /* Sesuaikan dengan padding container */
+        left: auto;
+        width: 180px;
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-container {
+        padding: 0 1rem; /* Padding lebih kecil lagi di layar sangat kecil */
+    }
+
+    .logo {
+        font-size: 1.4rem;
+    }
+
+    .nav-links {
+        gap: 0.5rem;
+    }
+
+    .nav-links li a {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.9rem;
+    }
+
+    .profile-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .profile-container span {
+        font-size: 0.9rem;
+    }
+
+    .dropdown {
+        right: 1rem;
+    }
+}
