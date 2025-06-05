@@ -408,6 +408,70 @@ Halaman **`projects/index.blade.php`** adalah jantung dari sistem CRUD proyek. D
 * Mengandalkan integrasi Laravel + Blade + JavaScript modular.
 
 
+## Penjelasan kode untuk halaman **Profil Pengguna**:
+### Struktur Umum
+* Menggunakan `@extends('layouts.app')` berarti halaman ini memakai layout utama aplikasi.
+* Blade ini berisi **tiga bagian utama**:
+  1. **Kartu Profil** (foto, nama, email, tanggal gabung)
+  2. **Form Pengaturan Akun** (ubah nama/email, password)
+  3. **Zona Berbahaya** (hapus akun)
+
+### Penjelasan Bagian per Bagian
+
+1. **Foto Profil dan Informasi Pengguna**
+```blade
+<img src="{{ Auth::user()->profile_picture ?? asset('images/default-avatar.png') }}">
+```
+* Menampilkan gambar profil pengguna, atau gambar default jika tidak ada.
+* Data pengguna diambil dari `Auth::user()`.
+
+2. **Form Ubah Data Akun**
+```blade
+<form id="updateProfileForm">
+    <input type="text" name="name" value="{{ Auth::user()->name }}">
+    <input type="email" name="email" value="{{ Auth::user()->email }}">
+</form>
+```
+* Untuk memperbarui nama dan email.
+* Akan dikirim ke controller via JavaScript (AJAX, dari `profile.js`).
+
+3. **Form Ubah Password**
+```blade
+<form id="changePasswordForm">
+    <input type="password" name="current_password">
+    <input type="password" name="new_password">
+    <input type="password" name="new_password_confirmation">
+</form>
+```
+* Validasi password lama dan baru dilakukan di backend.
+
+4. **Hapus Akun**
+```blade
+<form id="deleteAccountForm">
+    <input type="password" name="password">
+</form>
+```
+* User diminta memasukkan password sebagai konfirmasi sebelum menghapus akun.
+* Button `#confirmDeleteAccount` akan trigger aksi ini.
+
+5. **Modal: Preview Gambar & Konfirmasi Hapus**
+* Ada dua modal:
+  * `#imagePreviewModal` untuk menampilkan pratinjau gambar sebelum ubah.
+  * `#deleteAccountModal` untuk konfirmasi penghapusan akun.
+
+6. **Include CSS & JS**
+```blade
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('js/profile.js') }}"></script>
+@endsection
+```
+* File `profile.css` untuk styling tampilan profil.
+* File `profile.js` mengatur interaksi: ubah foto, simpan form, modal.
+
 
 Controller Utama
 1. AuthController
