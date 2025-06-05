@@ -1,11 +1,11 @@
-ProMonitoring – Aplikasi Pemantauan Proyek Mahasiswa
+ProMonitor – Aplikasi Pemantauan Proyek Mahasiswa
 
 Khairun Nisa
 2308107010074
 Project PBW B
 
 **Deskripsi Aplikasi**
-ProMonitoring adalah aplikasi manajemen proyek berbasis Laravel yang dirancang untuk membantu mahasiswa dalam memantau perkembangan proyek mereka. Aplikasi ini menyediakan antarmuka yang mudah digunakan untuk membuat, mengelola, dan mengevaluasi proyek secara efisien.
+ProMonitor adalah aplikasi manajemen proyek berbasis Laravel yang dirancang untuk membantu mahasiswa dalam memantau perkembangan proyek mereka. Aplikasi ini menyediakan antarmuka yang mudah digunakan untuk membuat, mengelola, dan mengevaluasi proyek secara efisien.
 Fitur Utama:
 1. Registrasi dan login pengguna
 2. Pembuatan, pengeditan, dan penghapusan proyek
